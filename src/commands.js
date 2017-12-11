@@ -5,7 +5,6 @@ const commands = [];
 export function initialize() {
   cache.load().then(({ commands: savedCommands }) => {
     Object.assign(commands, savedCommands);
-    console.log(commands);
   });
 }
 

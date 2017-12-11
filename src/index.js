@@ -15,11 +15,26 @@ const clearPreamble = `${keyword} clear`;
 
 
 export const fn = (props) => {
-  processCustomCommands(props);
-  processHelperCommands(props);
-  processBuiltinCommands(props);
+  if(checkForKey(props)) {
+    processCustomCommands(props);
+    processHelperCommands(props);
+    processBuiltinCommands(props);
+  }
 }
 
+function checkForKey({ term, settings, display, actions }) {
+  if (!settings.key && (keyword.startsWith(term) || term.startsWith(keyword))) {
+    display({
+      icon,
+      title: 'IFTTT: Please Add Key from Service to Plugin Settings',
+      subtitle: 'Press [Enter] to go to Setup Instructions and [Tab] to go to plugin settings',
+      term: 'plugins ifttt',
+      onSelect: () => actions.open('https://github.com/codingmatty/cerebro-plugin-ifttt/blob/master/docs/setup.md')
+    });
+  }
+
+  return !!settings.key;
+}
 
 function processCustomCommands({ term, display, settings = {} }) {
   // Search for exact commands and display with action

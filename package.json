@@ -1,6 +1,6 @@
 {
   "name": "cerebro-plugin-ifttt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cerebro plugin to integrate with IFTTT",
   "license": "MIT",
   "repository": "codingmatty/cerebro-plugin-ifttt",
